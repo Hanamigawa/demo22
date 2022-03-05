@@ -1,0 +1,8 @@
+com\example\demo22\entity\db\Item.class
+com\example\demo22\controller\GameController.class
+com\example\demo22\entity\response\Game.class
+com\example\demo22\HelloServlet.class
+com\example\demo22\ApplicationConfig.class
+com\example\demo22\service\GameService.class
+com\example\demo22\entity\db\ItemType.class
+com\example\demo22\service\TwitchException.class
