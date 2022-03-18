@@ -27,4 +27,10 @@ public class Game {
 
     @JsonProperty("price")
     public double price;
+
+    @JsonProperty("box_art_url")
+    public String boxArtUrl;
+
+    @JsonProperty("id")
+    public String id;
 }

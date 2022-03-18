@@ -20,11 +20,26 @@ import java.util.List;
 
 @Service
 public class GameService {
-    private static final String TOKEN = "Bearer 2il94pl5lkvgc6mrivocova5ggief0";
+    private static final String TOKEN = "Bearer yjropa7a3yh17ns3591wdgiw5zle4k";
     private static final String CLIENT_ID = "zl20uhxpt5hvmywu4znnr5s9uasmz3";
     private static final String TOP_GAME_URL = "https://api.twitch.tv/helix/games/top?first=%s";
     private static final String GAME_SEARCH_URL_TEMPLATE = "https://api.twitch.tv/helix/games?name=%s";
     private static final int DEFAULT_GAME_LIMIT = 20;
+
+    public List<Game> topGames(int limit) throws TwitchException {
+        if (limit <= 0) {
+            limit = DEFAULT_GAME_LIMIT;
+        }
+        return getGameList(searchTwitch(getTopGamesUrl(limit)));
+    }
+
+    public Game searchGame(String gameName) throws TwitchException {
+        List<Game> gameList = getGameList(searchTwitch(buildGameUrl(gameName)));
+        if (gameList.size() != 0) {
+            return gameList.get(0);
+        }
+        return null;
+    }
 
     private String buildGameUrl(String gameName) {
         if (gameName.equals("")) {
@@ -89,18 +104,4 @@ public class GameService {
         }
     }
 
-    public List<Game> topGames(int limit) throws TwitchException {
-        if (limit <= 0) {
-            limit = DEFAULT_GAME_LIMIT;
-        }
-        return getGameList(searchTwitch(getTopGamesUrl(limit)));
-    }
-
-    public Game searchGame(String gameName) throws TwitchException {
-        List<Game> gameList = getGameList(searchTwitch(buildGameUrl(gameName)));
-        if (gameList.size() != 0) {
-            return gameList.get(0);
-        }
-        return null;
-    }
 }
