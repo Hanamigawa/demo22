@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "users")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,4 +37,7 @@ public class User {
     @JsonProperty("last_name")
     private String lastName;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="favorite_records", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="item_id")})
+    Set<Item> itemSet = new HashSet<>();
 }

@@ -1,6 +1,7 @@
 package com.example.demo22.service;
 
 import com.example.demo22.entity.response.Game;
+import com.example.demo22.variables.Vault;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
@@ -20,8 +21,8 @@ import java.util.List;
 
 @Service
 public class GameService {
-    private static final String TOKEN = "Bearer yjropa7a3yh17ns3591wdgiw5zle4k";
-    private static final String CLIENT_ID = "zl20uhxpt5hvmywu4znnr5s9uasmz3";
+    private static final String TOKEN = Vault.TWITCH_TOKEN;
+    private static final String CLIENT_ID = Vault.TWITCH_CLIENT_ID;
     private static final String TOP_GAME_URL = "https://api.twitch.tv/helix/games/top?first=%s";
     private static final String GAME_SEARCH_URL_TEMPLATE = "https://api.twitch.tv/helix/games?name=%s";
     private static final int DEFAULT_GAME_LIMIT = 20;
